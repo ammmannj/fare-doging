@@ -39,15 +39,11 @@ dramatically, because the passenger “warn” each other of a regional inspecti
 
 ## References 
 
-Strategies of the Stakeholders Related with the Behavior of Fare Evasions Based on Game Theory
-Author(s): Wu Dan; Qiu Canhua
+Strategies of the Stakeholders Related with the Behavior of Fare Evasions Based on Game Theory.
+Wu Dan; Qiu Canhua
 
-Source: Proceedings 2011 Fourth International Conference on Information Management, Innovation Management and Industrial Engineering (ICIII 2011) Pages: 94-7  Part: vol.3  Published: 01 2011  DOI: 10.1109/ICIII.2011.308  
-
-Uncovering San Francisco, California, Muni's Proof-of-Payment Patterns to Help Reduce Fare Evasion
-Author(s): Lee, J (Lee, Jason)
-
-Source: TRANSPORTATION RESEARCH RECORD  Issue: 2216   Pages: 75-84   DOI: 10.3141/2216-09   Published: 2011
+Uncovering San Francisco, California, Muni's Proof-of-Payment Patterns to Help Reduce Fare Evasion.
+Lee, J (Lee, Jason)
 
 ## Research Methods
 
