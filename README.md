@@ -25,10 +25,10 @@ passenger changes due to their experience and his social environment.
 ## Fundamental Questions
 
 * What behaviour for the passanger leads to realistic results (compared to surveys eg. San Francisco)?
-> * What behaviour for the ticket inspectors lead to realistic results?
-> What is the influence of the ticket inspector behavoir to the behavoir of the passanger?
-> * How can the ticket inspector behaviour be modified to minimize fare evasion?
-> * How can the ticket inspector behaviour be modified to maximize profit?
+* What behaviour for the ticket inspectors lead to realistic results?
+* What is the influence of the ticket inspector behavoir to the behavoir of the passanger?
+* How can the ticket inspector behaviour be modified to minimize fare evasion?
+* How can the ticket inspector behaviour be modified to maximize profit?
 
 
 ## Expected Results
