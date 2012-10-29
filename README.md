@@ -13,13 +13,7 @@ behaviour and its interference with the ticket inspection must be researched.
 
 ## The Model
 The passenger and ticket inspector are represented by agents that show in a first step independent uniform 
-behaviour. In a second step the behaviour of the agent is dependend on each other. The main idea of the passenger 
-behaviour is that the probability of dodging fare increases with the time not being inspected and dodging fare 
-successfully. This can then represent the situation, where ticket inspector plan their routes together and 
-passenger share fare dodging experience. The public transportation network is implemented by a matrix, where 
-the lines represent the different stations and the value of the row the connection to other stations. During the 
-simulation the behaviour of the ticket inspectors is left constant whereas the fare dodging behaviour of the 
-passenger changes due to their experience and his social environment. 
+behaviour. In a second step the behaviour of the agent is dependend on each other. The main idea of the passenger behaviour is that the probability of dodging fare increases with the time not being inspected and dodging fare successfully. This can then represent the situation, where ticket inspector plan their routes together and passenger share fare dodging experience. The public transportation network is implemented as a graph represented by a matrix, we will model a subset of the public transportation network of the city of Zurich. During the simulation the behaviour of the ticket inspectors is left constant whereas the fare dodging behaviour of the passenger changes due to their experience and his social environment. The values conducted by the model can be compared to some analytical estimations.
 
 
 ## Fundamental Questions
