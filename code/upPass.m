@@ -18,6 +18,7 @@ function [Way_P,Passenger, Statistic] = upPass(Way,Passenger,PassID, Statistic)
     end
 
     %calculate fare-doging probability
+if Way(PassID,5)==1
     if Way(PassID,6)==1
         Passenger{PassID,1}=0;
         Passenger{PassID,2}=0;
@@ -35,6 +36,7 @@ function [Way_P,Passenger, Statistic] = upPass(Way,Passenger,PassID, Statistic)
             end
         end
     end
+end
     
     %update Way matrix
     Way(PassID,1)=pendelweg(Way(PassID,5),1);
