@@ -1,9 +1,8 @@
-function [Way_P, Way_K, Passenger, Statistic] = upKont(Way_P, Way_K, Passenger, KontID, model, Statistic)
+function [Way_P, Way_K, Statistic] = upKont(Way_P, Way_K, KontID, model, Statistic)
 
     %KontID: unique passenger ID, index in matrix
     %Way_P[n x 5]: matrix with all passenger ways
     %Way_K[m x 4]: matrix with all controller ways
-    %Passenger[n x 3]: cell-matrix with properties of passengers
     %model: controlling model
     %Statistic: matrix with statistics about controls, fare-doging...
     
@@ -14,7 +13,7 @@ function [Way_P, Way_K, Passenger, Statistic] = upKont(Way_P, Way_K, Passenger, 
     poskont=0;
     
     %control the passengers
-    [n,m]=size(Way_P);
+    [n,m]=size(Way_P);c
     for i=1:n
        if Way_P(i,3)==line&&Way_P(i,1)==orig&&Way_P(i,2)==dest
            if Way_P(i,4)==1
