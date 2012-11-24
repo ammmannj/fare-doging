@@ -2,59 +2,29 @@
 % editor: Lukas, Jens
 % HS 2012
 
-
-
 clear all;
+profile on;
 
-%% simmulation parameter
-%-------------------------------------------------------------------------
-itstep=10;            % iteration steps
-amount_passanger=100;    % amount of passanger
-amount_inspector=10;    % amount of ticket inspectors
-p0_schwarz=0.1;        % initual evation probability and initual evation fraction
-change_probe=0.4;
+%run the simulation with varying parameters
 
-%Pendelweg
-station_mean=4.6;       %mittlerer Weg Pendelhinfahrweg
-station_sigma=2.1;              %stantartabweichung vom Pendehinfahrtweg
+maxsteps=100; %2000;
+maxamountp=100; %50000;
+maxamounti=1; %100;
 
-%-------------------------------------------------------------------------
-
-%% Initialisation
-net=createNetz;
-[Passanger]=inPass(amount_passanger,p0_schwarz,station_mean,station_sigma,change_probe,net);
-
-Way_P=zeros(amount_passanger,5);
-
-for p=1:amount_passanger
-Way_P(p,1:3)=Passanger{p,4}(1,:);    % fill in first way of Passanger
-Way_P(p,4:5)=[Passanger{p,3},1];    % fill in dogging and pendelschritt
+figure;
+for i=100:maxsteps/10:maxsteps
+    for amountp=10:maxamountp/10:maxamountp
+        for amounti=1:maxamounti/10:maxamounti
+            for p=0.9%0:0.1:1
+                stat = [stat,runsim(steps,amountp,amounti,p)]; 
+            end
+        end
+    end
 end
 
-Way_K=inWay_K(amount_inspector,net);  %fill in first way of Passanger
-                                                                            
-Statistic=zeros(itstep,3);
-
-
-
-
-%{ 
-Iteration
-for i=1:itstep
-  
-  %update Passanger
-  for p=1:amount_passanger
-    [Way_P(p,:),Passanger, Statistic]= upPass(Way_P,Passanger,p,Statistic); 
-  end
-  
-  %update ticket inspector
-  
-  %upadate statistic
-  
+for k=1:8
+    subplot(4,2,k);
+    plot(
 end
 
-%}
-
-% detemination of output values
-
-
+profile viewer;

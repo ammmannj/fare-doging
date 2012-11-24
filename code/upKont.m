@@ -1,4 +1,8 @@
-function [Way_P, Way_K, Statistic] = upKont(Way_P, Way_K, KontID, model, Statistic)
+function [Way_P, Way_K, erwischt, poskont] = upKont(Way_P, Way_K, KontID, model)
+
+    Way_K(KontID,1)=model(1,1);
+    Way_K(KontID,2)=model(1,2);
+    Way_K(KontID,3)=model(1,3);
 
     %KontID: unique passenger ID, index in matrix
     %Way_P[n x 5]: matrix with all passenger ways
@@ -13,10 +17,10 @@ function [Way_P, Way_K, Statistic] = upKont(Way_P, Way_K, KontID, model, Statist
     poskont=0;
     
     %control the passengers
-    [n,m]=size(Way_P);c
+    [n,m]=size(Way_P);
     for i=1:n
        if Way_P(i,3)==line&&Way_P(i,1)==orig&&Way_P(i,2)==dest
-           if Way_P(i,4)==1
+           if ((Way_P(i,4)==1)&&Way_P(i,6)~=1)
                erwischt=erwischt+1;
                Way_P(i,6)=1;
            else
@@ -25,20 +29,5 @@ function [Way_P, Way_K, Statistic] = upKont(Way_P, Way_K, KontID, model, Statist
        end
     end
     
-    %update statistics
-    [n,m]=size(Statistic);
-    Statistic(n-1,2)=erwischt;
-    Statistic(n-1,3)=poskont;
-    
-    %update way
-    [maxschr,k]=size(model);
-    if Way_K(KontID,4)>=maxschr
-        Way_K(KontID,4)=1;
-    else
-        Way_K(KontID,4)=Way_K(KontID,4)+1;
-    end
-    Way_K(KontID,1)=model(Way(KontID,4),1);
-    Way_K(KontID,2)=model(Way(KontID,4),2);
-    Way_K(KontID,3)=model(Way(KontID,4),3);
 
 end

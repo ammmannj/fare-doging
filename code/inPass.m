@@ -1,4 +1,4 @@
-function [Passanger]= inPass(amount_passanger,p0_schwarz,station_mean,station_sigma,change_prob,net) 
+function [Passenger]= inPass(amount_passanger,p0_schwarz,station_mean,station_sigma,change_prob,net) 
 
 %p0_schwarz: initual probability for fare evastion
 %station mean: avrarage station traveld for the Pendelweg
@@ -8,35 +8,37 @@ function [Passanger]= inPass(amount_passanger,p0_schwarz,station_mean,station_si
 %(initial probaility of taking a ticket, actual probaility of taking a ticket (inital 0), dogging (yes=1, no=0), pendelweg)
 
 %% fill in P_initual_schwarz/ status schwarz
-Passanger={zeros(amount_passanger,4)};
+Passenger=zeros(amount_passanger,4);
+Passenger=num2cell(Passenger);
 
 for p=1:amount_passanger
-Passanger(p,1)= {p0_schwarz};                                               %fill in P_schwarz to matrix Passanger
-if rand()<p0_schwarz                                                        % fill in column dogging
-Passanger(p,3)={1};
-else Passanger(p,3)={0};
+    Passenger{p,1}= p0_schwarz;
+%    Passenger{p,1}= randi([0,10])/10; %random probability for fare-doging %{p0_schwarz};                                            %fill in P_schwarz to matrix Passanger
+%   not needed happens in Passenger update function   
+%    if rand()<p0_schwarz                                                        % fill in column dogging
+%        Passenger(p,3)={1};
+%    else
+%        Passenger(p,3)={0};  
+%    end
 end
-end
-
-
-
 
 %%fill in Pendelweg
 Passchange(:,1)= round(randn(amount_passanger,1)*station_sigma+station_mean);%how many time changes passanger for their workingway
-way=1:3;
 for p=1:amount_passanger
  clear way;
  
+ way=zeros(1,3);
  
  way(1,1) = randi([ 1 , size(net,1)]);                                      %implement starting position and fist to way
- [way(1,1),way(1,2),way(1,3)] = selectLine(net,way(1,1));
+ 
+ way(1,:) = selectLine(net,way(1,1));
  
  
 for i=1:Passchange(p)-1                                                     %iteration über Pendelweg Hinausfahren
     
     if change_prob>rand()                                                   %Passanger change line
     
-    [way(i+1,1),way(i+1,2),way(i+1,3)]=selectLine(net,way(i,2));   
+    way(1+i,:)=selectLine(net,way(i,2));   
     
     else                                                                    %Passanger doesn't change line
     sto=0;
@@ -75,30 +77,9 @@ for i=Passchange(p)+1:2*Passchange(p)                                       %ite
     
     
 end    
-Passanger(p,4)={way};                                                         %write way to passanger matrix
+Passenger(p,4)={way};                                                         %write way to passanger matrix
 
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 end
