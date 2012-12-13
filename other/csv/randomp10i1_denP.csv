@@ -1,0 +1,24 @@
+Source,Target,Type,Id,Label,Weight
+2.0,7.0,Undirected,1,4,24,7
+7.0,14.0,Undirected,2,4  17,149,14
+8.0,15.0,Undirected,3,3  8,50,15
+10.0,11.0,Undirected,4,7,34,11
+11.0,13.0,Undirected,5,6   7  13,60,13
+13.0,16.0,Undirected,6,6   7  11  13,109,16
+13.0,42.0,Undirected,7,2   8   9  11,50,42
+14.0,16.0,Undirected,8,11  13,27,16
+14.0,31.0,Undirected,9,11  14,77,31
+15.0,17.0,Undirected,10,3  10,50,17
+16.0,17.0,Undirected,11,6  7,50,17
+17.0,18.0,Undirected,12,6   7  10  15,50,18
+19.0,20.0,Undirected,13,9,17,20
+19.0,32.0,Undirected,14,9  10,17,32
+20.0,30.0,Undirected,15,5  9,17,30
+24.0,30.0,Undirected,16,3  8,16,30
+31.0,32.0,Undirected,17,7  14,26,32
+31.0,33.0,Undirected,18,11  15,53,33
+32.0,34.0,Undirected,19,7  9,17,34
+33.0,37.0,Undirected,20,11,53,37
+34.0,36.0,Undirected,21,9,16,36
+37.0,38.0,Undirected,22,10  14,26,38
+38.0,40.0,Undirected,23,14,12,40

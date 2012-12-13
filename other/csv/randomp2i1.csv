@@ -1,0 +1,7 @@
+Source,Target,Type,Id,Label,Weight
+3.0,6.0,Undirected,0,18  25   0   0,1.0
+4.0,6.0,Undirected,1,21  25   0   0,1.0
+6.0,8.0,Undirected,2,39  50   0   0,1.0
+8.0,13.0,Undirected,3,39  50   0   0,1.0
+11.0,13.0,Undirected,4,21  25   0   0,1.0
+13.0,42.0,Undirected,5,18  25   0   0,1.0

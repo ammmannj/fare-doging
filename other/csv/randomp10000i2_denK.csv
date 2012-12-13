@@ -1,0 +1,10 @@
+Source,Target,Type,Id,Label,Weight
+12.0,25.0,Undirected,1,11  15,1,25
+12.0,30.0,Undirected,2,5  8  9,1,30
+14.0,17.0,Undirected,3,4,1,17
+14.0,31.0,Undirected,4,11  14,1,31
+17.0,30.0,Undirected,5,3,1,30
+24.0,25.0,Undirected,6,15,1,25
+24.0,26.0,Undirected,7,3   8  15,2,26
+24.0,30.0,Undirected,8,3  8,1,30
+31.0,32.0,Undirected,9,7  14,1,32
