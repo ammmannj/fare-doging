@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of upKont</title>
+  <meta name="keywords" content="upKont">
+  <meta name="description" content="KontID: unique passenger ID, index in matrix">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>upKont
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>KontID: unique passenger ID, index in matrix</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [Way_P, Way_K, erwischt, poskont,A] = upKont(Way_P, Way_K, KontID,A) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">KontID: unique passenger ID, index in matrix
+Way_P[n x 6]: matrix with all passenger ways
+Way_K[m x 4]: matrix with all controller ways
+model: controlling model
+A: matrix with statistics about controls, fare-doging...</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="statup.html" class="code" title="function A = statup(Way,arg,A)">statup</a>	arg:</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>	% simulation parameter</li><li><a href="runsim_distribution.html" class="code" title="function [stat,den_P,den_K] = runsim_distribution(steps,pass,insp,p,model)">runsim_distribution</a>	postcondition</li><li><a href="runsimold.html" class="code" title="function [stat] = runsim(steps,pass,insp,p,model,lambda)">runsimold</a>	% simulation parameter</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [Way_P, Way_K, erwischt, poskont,A] = upKont(Way_P, Way_K, KontID,A)</a>
+0002 
+0003     <span class="comment">%KontID: unique passenger ID, index in matrix</span>
+0004     <span class="comment">%Way_P[n x 6]: matrix with all passenger ways</span>
+0005     <span class="comment">%Way_K[m x 4]: matrix with all controller ways</span>
+0006     <span class="comment">%model: controlling model</span>
+0007     <span class="comment">%A: matrix with statistics about controls, fare-doging...</span>
+0008     
+0009     orig=Way_K(KontID,1);
+0010     dest=Way_K(KontID,2);
+0011     line=Way_K(KontID,3);
+0012     erwischt=0;
+0013     poskont=0;
+0014     
+0015     <span class="comment">%control the passengers</span>
+0016     [n,m]=size(Way_P);
+0017     <span class="keyword">for</span> i=1:n
+0018         <span class="comment">%see if control and passenger is on same wagon(tram)</span>
+0019        <span class="keyword">if</span> Way_P(i,3)==line&amp;&amp;Way_P(i,1)==orig&amp;&amp;Way_P(i,2)==dest
+0020            <span class="keyword">if</span> ((Way_P(i,4)==1)&amp;&amp;Way_P(i,6)==0)
+0021                erwischt=erwischt+1;
+0022                A=<a href="statup.html" class="code" title="function A = statup(Way,arg,A)">statup</a>(Way_P(i,1:3),2,A);
+0023                Way_P(i,6)=1;
+0024            <span class="keyword">elseif</span> ((Way_P(i,6)~=1)&amp;&amp;Way_P(i,6)~=2)
+0025                 poskont=poskont+1;
+0026                 A=<a href="statup.html" class="code" title="function A = statup(Way,arg,A)">statup</a>(Way_P(i,1:3),3,A);
+0027                 Way_P(i,6)=2;
+0028            <span class="keyword">end</span>
+0029        <span class="keyword">end</span>
+0030     <span class="keyword">end</span>
+0031 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

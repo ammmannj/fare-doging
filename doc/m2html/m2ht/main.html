@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of main</title>
+  <meta name="keywords" content="main">
+  <meta name="description" content="project: ticket evasion">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>main
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>project: ticket evasion</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"> project: ticket evasion
+ editor: Lukas, Jens
+ HS 2012</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>	% simulation parameter</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">% project: ticket evasion</span>
+0002 <span class="comment">% editor: Lukas, Jens</span>
+0003 <span class="comment">% HS 2012</span>
+0004 
+0005 clear all;
+0006 <span class="comment">%profile on;</span>
+0007 
+0008 amountp=500;
+0009 steps=1000;
+0010 model={<span class="string">'random'</span> <span class="string">'line'</span> <span class="string">'station'</span>};
+0011 amounti=3;
+0012 lambda=0.0006;
+0013 
+0014 <span class="comment">%{</span>
+0015 stat2=[];
+0016 
+0017 <span class="keyword">for</span> i=1:5
+0018     stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,i,0.05,model(3),0.005)];
+0019 <span class="keyword">end</span>
+0020 
+0021 figure;
+0022 i=1:steps;
+0023 
+0024 plot(i,stat2(1,:),i,stat2(2,:),i,stat2(3,:),i,stat2(4,:),i,stat2(5,:));
+0025 
+0026 legend(<span class="string">'% dodging ins: 1'</span>,<span class="string">'% dodging ins: 2'</span>,<span class="string">'% dodging ins: 3'</span>,<span class="string">'% dodging ins: 4'</span>,<span class="string">'% dodging ins: 5'</span>, <span class="string">'Location'</span>, <span class="string">'Best'</span>);
+0027 xlabel(<span class="string">'{\bf iteration steps}'</span>,<span class="string">'fontsize'</span>,14);
+0028 ylabel(<span class="string">'{\bf percentage of dodgers}'</span>,<span class="string">'fontsize'</span>,14);
+0029 name = [<span class="string">'figure\station500-500-x.jpg'</span>];
+0030 print(<span class="string">'-djpeg95'</span>, name);
+0031 
+0032 
+0033 <span class="comment">%%</span>
+0034 
+0035 stat2 = <a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(1),0.1);
+0036 stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(1),0.05)];
+0037 stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(1),0.01)];
+0038 stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(1),0.005)];
+0039 stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(1),0.001)];
+0040 
+0041 
+0042 figure;
+0043 i=1:steps;
+0044 
+0045 plot(i,stat2(1,:),i,stat2(2,:),i,stat2(3,:),i,stat2(4,:),i,stat2(5,:));
+0046 
+0047 legend(<span class="string">'% dodging random 0.1'</span>,<span class="string">'% dodging random 0.05'</span>,<span class="string">'% dodging random 0.01'</span>,<span class="string">'% dodging random 0.005'</span>,<span class="string">'% dodging random 0.001'</span>, <span class="string">'Location'</span>, <span class="string">'Best'</span>);
+0048 name = [<span class="string">'figure\random0,1-0,005.jpg'</span>];
+0049 print(<span class="string">'-djpeg95'</span>, name);
+0050 <span class="comment">%}</span>
+0051 
+0052 
+0053    
+0054     stat2=[];
+0055 
+0056     <span class="keyword">for</span> i=1:3
+0057         stat2 = [stat2;<a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>(steps,amountp,amounti,0.05,model(i),lambda)];
+0058     <span class="keyword">end</span>
+0059     i=1:3;
+0060     figure; 
+0061    
+0062     subplot(2,1,1);
+0063     plot(i,stat2(:,8).*100,<span class="string">'--g'</span>,i,stat2(:,9).*100,<span class="string">'--b'</span>)
+0064     legend(<span class="string">'% ppl doging'</span>,<span class="string">'% ppl controlled w. doging'</span>, <span class="string">'Location'</span>, <span class="string">'WestOutside'</span>)
+0065 
+0066     subplot(2,1,2);
+0067     plot(i,stat2(:,7).*100,<span class="string">'--c'</span>);
+0068     legend(<span class="string">'% controlled'</span>, <span class="string">'Location'</span>, <span class="string">'EastOutside'</span>);
+0069     xlabel(<span class="string">'{\bf 1:random, 2:line, 3:station}'</span>,<span class="string">'fontsize'</span>,14);
+0070     name = [<span class="string">'figure\fixedevery.jpg'</span>];
+0071     print(<span class="string">'-djpeg95'</span>, name);
+0072 
+0073 <span class="comment">%}</span></pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

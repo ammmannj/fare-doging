@@ -1,6 +1,7 @@
 function Netz = createNetz()
-
-    n=41; %dimension
+    
+    %dimension
+    n=42; 
     Netz=cell(n);
     Netz(1,7)={17};
     Netz(2,7)={4};
@@ -9,17 +10,18 @@ function Netz = createNetz()
     Netz(5,8)={9};
     Netz(6,8)={[2,3]};
     Netz(7,14)={[4,17]};
+	Netz(8,13)={[2,9]};
     Netz(8,15)={[3,8]};
     Netz(9,11)={[5,13]};
     Netz(10,11)={7};
-    Netz(11,19)={5};
+    Netz(11,42)={5};
     Netz(11,13)={[6,7,13]};
-    Netz(12,19)={[2,5,8,9,11]};
+    Netz(12,42)={[2,5,8,9,11]};
     Netz(12,28)={[2,4]};
     Netz(12,25)={[11,15]};
     Netz(12,30)={[5,8,9]};
     Netz(12,17)={[4,15]};
-    Netz(13,19)={[2,8,9,11]};
+    Netz(13,42)={[2,8,9,11]};
     Netz(13,16)={[6,7,11,13]};
     Netz(14,15)={[14,17]};
     Netz(14,31)={[11,14]};
@@ -38,6 +40,7 @@ function Netz = createNetz()
     Netz(20,30)={[5,9]};
     Netz(21,22)={[5,6]};
     Netz(22,23)={6};
+	Netz(24,25)={15};
     Netz(24,26)={[3,8,15]};
     Netz(24,30)={[3,8]};
     Netz(25,27)={11};
@@ -53,8 +56,6 @@ function Netz = createNetz()
     Netz(37,39)={11};
     Netz(38,40)={14};
     Netz(38,41)={10};
-
-
 
     %make the matrix symmetric
     for i=1:n

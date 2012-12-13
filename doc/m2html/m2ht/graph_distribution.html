@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of graph_distribution</title>
+  <meta name="keywords" content="graph_distribution">
+  <meta name="description" content="precondition">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>graph_distribution
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>precondition</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function graph_distribution(A,model,insp,pass,name) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">precondition
+A= graph matrix A with amount of trips</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>	dimension</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="runsim_distribution.html" class="code" title="function [stat,den_P,den_K] = runsim_distribution(steps,pass,insp,p,model)">runsim_distribution</a>	postcondition</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function graph_distribution(A,model,insp,pass,name)</a>
+0002 
+0003 <span class="comment">%precondition</span>
+0004 <span class="comment">%A= graph matrix A with amount of trips</span>
+0005 
+0006 net=<a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>;
+0007 
+0008 <span class="comment">%create csv file for edges</span>
+0009 r=<span class="string">'Source,Target,Type,Id,Label,Weight\r\n'</span>;
+0010 id=1;
+0011 <span class="comment">%creats edges with statistics</span>
+0012 <span class="keyword">for</span> m=1:size(A,1)
+0013    <span class="keyword">for</span> n=m:size(A,1) 
+0014        <span class="keyword">if</span> (A(m,n)~=0)
+0015             r=strcat(r,num2str(m),<span class="string">'.0,'</span>);
+0016             r=strcat(r,num2str(n),<span class="string">'.0,'</span>);
+0017             r=strcat(r,<span class="string">'Undirected,'</span>);
+0018             r=strcat(r,num2str(id),<span class="string">','</span>); 
+0019             r=strcat(r,num2str(net{m,n}),<span class="string">','</span>); 
+0020             r=strcat(r,num2str(A(m,n)),<span class="string">','</span>); 
+0021             r=strcat(r,num2str(n),<span class="string">'\r\n'</span>); 
+0022             id=id+1;
+0023        <span class="keyword">end</span>  
+0024    <span class="keyword">end</span>
+0025 <span class="keyword">end</span>
+0026 
+0027 
+0028 <span class="comment">% write string to file</span>
+0029 name=[<span class="string">'csv\'</span> model <span class="string">'p'</span> num2str(pass) <span class="string">'i'</span> num2str(insp) <span class="string">'_'</span> name <span class="string">'.csv'</span>];
+0030 fid = fopen(name,<span class="string">'w'</span>);     
+0031 fprintf(fid,r);
+0032 fclose(fid);</pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

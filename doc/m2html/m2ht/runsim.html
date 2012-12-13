@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of runsim</title>
+  <meta name="keywords" content="runsim">
+  <meta name="description" content="% simulation parameter">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>runsim
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>% simulation parameter</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% simulation parameter
+-------------------------------------------------------------------------</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>	dimension</li><li><a href="getstats.html" class="code" title="function [counts,percentage] = getstats(Statistic)">getstats</a>	calculate percentages</li><li><a href="inPass.html" class="code" title="function [Passenger]= inPass(amount_passanger,p0_schwarz,station_mean,station_sigma,change_prob,net)">inPass</a>	p0_schwarz: initual probability for fare evastion</li><li><a href="inWay_K.html" class="code" title="function [Way_K]=inWay_K(amount_inspector,net)">inWay_K</a>	</li><li><a href="selectKwaynew.html" class="code" title="function [newWay]=selectKway(net,Inspector_ID,lastWay,model,modelproperty1)">selectKwaynew</a>	upgrates Inspector Way of the Inspector with respectiv ID</li><li><a href="upKont.html" class="code" title="function [Way_P, Way_K, erwischt, poskont,A] = upKont(Way_P, Way_K, KontID,A)">upKont</a>	KontID: unique passenger ID, index in matrix</li><li><a href="upPass.html" class="code" title="function [Way_P, Passenger, schwarz, tours,A] = upPass(Way, Passenger, PassID,A,lambda)">upPass</a>	%</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="main.html" class="code" title="">main</a>	project: ticket evasion</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)</a>
+0002 
+0003 <span class="comment">%% simulation parameter</span>
+0004 <span class="comment">%-------------------------------------------------------------------------</span>
+0005 itstep=steps;            <span class="comment">% iteration steps</span>
+0006 amount_passenger=pass;    <span class="comment">% amount of Passenger</span>
+0007 amount_inspector=insp;    <span class="comment">% amount of ticket inspectors</span>
+0008 p0_schwarz=1;        <span class="comment">% initual evation probability and initual evation fraction</span>
+0009 change_probe=0.4;
+0010 
+0011 <span class="comment">%Pendelweg</span>
+0012 station_mean=4.6;       <span class="comment">%mittlerer Weg Pendelhinfahrweg</span>
+0013 station_sigma=2.1;              <span class="comment">%stantartabweichung vom Pendehinfahrtweg</span>
+0014 
+0015 <span class="comment">%-------------------------------------------------------------------------</span>
+0016 
+0017 <span class="comment">%% Initialisation</span>
+0018 net=<a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>;
+0019 [Passenger]=<a href="inPass.html" class="code" title="function [Passenger]= inPass(amount_passanger,p0_schwarz,station_mean,station_sigma,change_prob,net)">inPass</a>(amount_passenger,p0_schwarz,station_mean,station_sigma,change_probe,net);
+0020 
+0021 Way_P=zeros(amount_passenger,6);
+0022 
+0023 A=zeros(42);
+0024 A=num2cell(A);
+0025 
+0026 <span class="keyword">for</span> p=1:amount_passenger
+0027     <span class="comment">% fill in first way of Passenger</span>
+0028     Way_P(p,1:3)=Passenger{p,4}(1,:);  
+0029     <span class="comment">% pendelschritt</span>
+0030     Way_P(p,5)=1;                        
+0031 <span class="keyword">end</span>
+0032 
+0033 <span class="keyword">if</span>(amount_inspector&gt;0)
+0034     <span class="comment">%fill in first way of Inspectors</span>
+0035     Way_K=<a href="inWay_K.html" class="code" title="function [Way_K]=inWay_K(amount_inspector,net)">inWay_K</a>(amount_inspector,net);  
+0036 <span class="keyword">end</span>
+0037 
+0038 <span class="comment">%Iteration</span>
+0039 <span class="keyword">for</span> i=1:itstep
+0040   schwarz=0;
+0041   erwischt=0;
+0042   poskont=0;
+0043   tours=0;
+0044     
+0045   <span class="comment">%update Passenger</span>
+0046   
+0047   <span class="keyword">for</span> p=1:amount_passenger
+0048     [Way_P(p,1:6), Passenger(p,1:4), schwarzp, toursp,A]= <a href="upPass.html" class="code" title="function [Way_P, Passenger, schwarz, tours,A] = upPass(Way, Passenger, PassID,A,lambda)">upPass</a>(Way_P(p,1:6),Passenger(p,1:4),1,A,lambda_dodg); 
+0049     schwarz=schwarz+schwarzp;
+0050     tours=tours+toursp;
+0051   <span class="keyword">end</span>
+0052   
+0053   <span class="comment">%update ticket inspector</span>
+0054   <span class="keyword">for</span> p=1:amount_inspector
+0055     [Way_P, Way_K, erwischtp, poskontp,A]= <a href="upKont.html" class="code" title="function [Way_P, Way_K, erwischt, poskont,A] = upKont(Way_P, Way_K, KontID,A)">upKont</a>(Way_P, Way_K, p,A);
+0056     Way_K(p,:)=<a href="selectKwaynew.html" class="code" title="function [newWay]=selectKway(net,Inspector_ID,lastWay,model,modelproperty1)">selectKwaynew</a>(net,1,Way_K(p,:),model,Ichange);
+0057     erwischt=erwischt+erwischtp;
+0058     poskont=poskont+poskontp;
+0059   <span class="keyword">end</span>
+0060   
+0061   
+0062   <span class="comment">%update statistics</span>
+0063   Statistic(i,:)=[schwarz,erwischt,poskont,tours];
+0064   
+0065 <span class="keyword">end</span>
+0066 
+0067 stat = [(Statistic(:,1)./tours)'];
+0068 figure;
+0069 plot(1:itstep,Statistic(:,1),1:itstep,Statistic(:,2),1:itstep,Statistic(:,3),1:itstep,Statistic(:,4));
+0070 legend(<span class="string">'schwarz'</span>,<span class="string">'erwischt'</span>,<span class="string">'poskont'</span>,<span class="string">'tours'</span>,<span class="string">'Location'</span>,<span class="string">'best'</span>)
+0071 <span class="comment">%title([model 'p' num2str(pass) 'i' num2str(insp)]);</span>
+0072 <span class="comment">%name = ['figure\' model 'p' num2str(pass) 'i' num2str(insp) '.jpg'];</span>
+0073 <span class="comment">%print('-djpeg95', name);</span>
+0074 
+0075 [counts, percentage]=<a href="getstats.html" class="code" title="function [counts,percentage] = getstats(Statistic)">getstats</a>(Statistic);
+0076 
+0077 stat=[counts,percentage];
+0078 <span class="comment">%graph(A,model,insp,pass);</span></pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

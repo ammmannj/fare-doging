@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of graph</title>
+  <meta name="keywords" content="graph">
+  <meta name="description" content="">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>graph
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong></strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function graph(A,model,insp,pass) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment"></pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>	dimension</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function graph(A,model,insp,pass)</a>
+0002 
+0003 net=<a href="createNetz.html" class="code" title="function Netz = createNetz()">createNetz</a>;
+0004 <span class="comment">%create header</span>
+0005 r=<span class="string">'graph\r\n[\r\n'</span>;
+0006 
+0007 stations=cell({<span class="string">'Werdhölzli'</span>,<span class="string">'Altstetten Nord'</span>,<span class="string">'Farbhof'</span>,<span class="string">'Albisrieden'</span>,<span class="string">'Triemli'</span>,<span class="string">'Albisriederplatz'</span>,<span class="string">'Escher-Wyss-Platz'</span>,<span class="string">'Stauffacher'</span>,<span class="string">'Laubegg'</span>,<span class="string">'Wollishofen'</span>,<span class="string">'Enge'</span>,<span class="string">'Bellevue'</span>,<span class="string">'Paradeplatz'</span>,<span class="string">'Bahnhofquai'</span>,<span class="string">'Bahnhofplatz'</span>,<span class="string">'Bahnhofstrasse'</span>,<span class="string">'Central'</span>,<span class="string">'Haldenegg'</span>,<span class="string">'ETH/Unispital'</span>,<span class="string">'Kantonsschule'</span>,<span class="string">'Platte'</span>,<span class="string">'Kirche Fluntern'</span>,<span class="string">'Zoo'</span>,<span class="string">'Römerhof'</span>,<span class="string">'Kreuzplatz'</span>,<span class="string">'Klusplatz'</span>,<span class="string">'Hegibachplatz'</span>,<span class="string">'Tiefenbrunnen'</span>,<span class="string">'Rehalp'</span>,<span class="string">'Kunsthaus'</span>,<span class="string">'Schaffhauserplatz'</span>,<span class="string">'Milchbuck'</span>,<span class="string">'Bucheggplatz'</span>,<span class="string">'Schwamendingerplatz'</span>,<span class="string">'Stettbach'</span>,<span class="string">'Hirzenbach'</span>,<span class="string">'Sternen Oerlikon'</span>,<span class="string">'Oerlikon Ost'</span>,<span class="string">'Auzelg'</span>,<span class="string">'Seebach'</span>,<span class="string">'Flughafen'</span>,<span class="string">'Bürkliplatz'</span>});
+0008 
+0009 <span class="comment">%creats nodes</span>
+0010 <span class="keyword">for</span> l=1:size(net,1)
+0011     p=num2str(l);
+0012     r=strcat(r,<span class="string">'node\r\n'</span>);
+0013     r=strcat(r,<span class="string">'[\r\n'</span>);
+0014     r=strcat(r,{<span class="string">'id '</span>}, p,<span class="string">'\r\n'</span>);
+0015     r=strcat(r,{<span class="string">'label &quot;'</span>},stations(l),<span class="string">'&quot;\r\n'</span>);
+0016     r=strcat(r,<span class="string">']\r\n'</span>);
+0017 <span class="keyword">end</span>
+0018 
+0019 <span class="comment">%create csv file for edges</span>
+0020 
+0021 r=<span class="string">'Source,Target,Type,Id,Label,Weight\r\n'</span>;
+0022 id=0;
+0023 <span class="comment">%creats edges with statistics</span>
+0024 <span class="keyword">for</span> m=1:size(A,1)
+0025    <span class="keyword">for</span> n=m:size(A,1) 
+0026        <span class="keyword">if</span> (size(A{m,n})==[1 4])
+0027             r=strcat(r,num2str(m),<span class="string">'.0,'</span>);
+0028             r=strcat(r,num2str(n),<span class="string">'.0,'</span>);
+0029             r=strcat(r,<span class="string">'Undirected,'</span>);
+0030             r=strcat(r,num2str(id),<span class="string">','</span>); 
+0031             r=strcat(r,num2str(A{m,n}),<span class="string">','</span>); 
+0032             r=strcat(r,<span class="string">'1.0\r\n'</span>); 
+0033             id=id+1;
+0034        <span class="keyword">end</span>  
+0035    <span class="keyword">end</span>
+0036 <span class="keyword">end</span>
+0037 
+0038 <span class="comment">% write string to file</span>
+0039 name=[<span class="string">'csv\'</span> model <span class="string">'p'</span> num2str(pass) <span class="string">'i'</span> num2str(insp) <span class="string">'.csv'</span>];
+0040 fid = fopen(name,<span class="string">'w'</span>);     
+0041 fprintf(fid,r);
+0042 fclose(fid);</pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

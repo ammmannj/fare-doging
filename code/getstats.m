@@ -1,5 +1,7 @@
 function [counts,percentage] = getstats(Statistic)
 
+% calculate percentages
+%
 
 controldoging = sum(Statistic(:,2));
 controlnondoging = sum(Statistic(:,3));

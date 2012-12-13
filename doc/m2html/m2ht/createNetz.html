@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of createNetz</title>
+  <meta name="keywords" content="createNetz">
+  <meta name="description" content="dimension">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- menu.html . -->
+<h1>createNetz
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>dimension</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="box"><strong>function Netz = createNetz() </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre class="comment">dimension</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../matlabicon.gif)">
+<li><a href="graph.html" class="code" title="function graph(A,model,insp,pass)">graph</a>	</li><li><a href="graph_distribution.html" class="code" title="function graph_distribution(A,model,insp,pass,name)">graph_distribution</a>	precondition</li><li><a href="runsim.html" class="code" title="function [stat] = runsim(steps,pass,insp,Ichange,model,lambda_dodg)">runsim</a>	% simulation parameter</li><li><a href="runsim_distribution.html" class="code" title="function [stat,den_P,den_K] = runsim_distribution(steps,pass,insp,p,model)">runsim_distribution</a>	postcondition</li><li><a href="runsimold.html" class="code" title="function [stat] = runsim(steps,pass,insp,p,model,lambda)">runsimold</a>	% simulation parameter</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
+<div class="fragment"><pre>0001 <a name="_sub0" href="#_subfunctions" class="code">function Netz = createNetz()</a>
+0002     
+0003     <span class="comment">%dimension</span>
+0004     n=42; 
+0005     Netz=cell(n);
+0006     Netz(1,7)={17};
+0007     Netz(2,7)={4};
+0008     Netz(3,6)={2};
+0009     Netz(4,6)={3};
+0010     Netz(5,8)={9};
+0011     Netz(6,8)={[2,3]};
+0012     Netz(7,14)={[4,17]};
+0013     Netz(8,13)={[2,9]};
+0014     Netz(8,15)={[3,8]};
+0015     Netz(9,11)={[5,13]};
+0016     Netz(10,11)={7};
+0017     Netz(11,42)={5};
+0018     Netz(11,13)={[6,7,13]};
+0019     Netz(12,42)={[2,5,8,9,11]};
+0020     Netz(12,28)={[2,4]};
+0021     Netz(12,25)={[11,15]};
+0022     Netz(12,30)={[5,8,9]};
+0023     Netz(12,17)={[4,15]};
+0024     Netz(13,42)={[2,8,9,11]};
+0025     Netz(13,16)={[6,7,11,13]};
+0026     Netz(14,15)={[14,17]};
+0027     Netz(14,31)={[11,14]};
+0028     Netz(14,16)={[11,13]};
+0029     Netz(14,17)={4};
+0030     Netz(15,17)={[3,10]};
+0031     Netz(16,17)={[6,7]};
+0032     Netz(17,18)={[6,7,10,15]};
+0033     Netz(17,30)={3};
+0034     Netz(18,19)={[6,10]};
+0035     Netz(18,31)={[7,15]};
+0036     Netz(19,20)={9};
+0037     Netz(19,21)={6};
+0038     Netz(19,32)={[9,10]};
+0039     Netz(20,21)={5};
+0040     Netz(20,30)={[5,9]};
+0041     Netz(21,22)={[5,6]};
+0042     Netz(22,23)={6};
+0043     Netz(24,25)={15};
+0044     Netz(24,26)={[3,8,15]};
+0045     Netz(24,30)={[3,8]};
+0046     Netz(25,27)={11};
+0047     Netz(27,29)={11};
+0048     Netz(31,32)={[7,14]};
+0049     Netz(31,33)={[11,15]};
+0050     Netz(32,34)={[7,9]};
+0051     Netz(32,37)={[10,14]};
+0052     Netz(33,37)={11};
+0053     Netz(34,35)={7};
+0054     Netz(34,36)={9};
+0055     Netz(37,38)={[10,14]};
+0056     Netz(37,39)={11};
+0057     Netz(38,40)={14};
+0058     Netz(38,41)={10};
+0059 
+0060     <span class="comment">%make the matrix symmetric</span>
+0061     <span class="keyword">for</span> i=1:n
+0062        <span class="keyword">for</span> j=1:n
+0063            [sn, sm] = size(Netz{i,j});
+0064            <span class="keyword">if</span> sn==0&amp;&amp;sm==0
+0065                Netz(i,j)={0};
+0066            <span class="keyword">end</span>
+0067            Netz(j,i)=Netz(i,j);
+0068        <span class="keyword">end</span>
+0069     <span class="keyword">end</span>
+0070 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Thu 13-Dec-2012 20:06:01 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

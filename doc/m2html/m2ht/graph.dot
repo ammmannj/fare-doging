@@ -1,0 +1,50 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  graph -> createNetz;
+  graph_distribution -> createNetz;
+  inPass -> findline;
+  inWay_K -> selectrandLine;
+  main -> runsim;
+  runsim -> createNetz;
+  runsim -> getstats;
+  runsim -> inPass;
+  runsim -> inWay_K;
+  runsim -> selectKwaynew;
+  runsim -> upKont;
+  runsim -> upPass;
+  runsim_distribution -> createNetz;
+  runsim_distribution -> getstats;
+  runsim_distribution -> graph_distribution;
+  runsim_distribution -> inPass;
+  runsim_distribution -> inWay_K;
+  runsim_distribution -> upKont;
+  runsim_distribution -> upPass;
+  runsimold -> createNetz;
+  runsimold -> getstats;
+  runsimold -> inPass;
+  runsimold -> inWay_K;
+  runsimold -> upKont;
+  runsimold -> upPass;
+  selectKwaynew -> selectLine;
+  upKont -> statup;
+  upPass -> statup;
+
+  createNetz [URL="createNetz.html"];
+  findline [URL="findline.html"];
+  getstats [URL="getstats.html"];
+  graph [URL="graph.html"];
+  graph_distribution [URL="graph_distribution.html"];
+  inPass [URL="inPass.html"];
+  inWay_K [URL="inWay_K.html"];
+  main [URL="main.html"];
+  pathdef [URL="pathdef.html"];
+  runsim [URL="runsim.html"];
+  runsim_distribution [URL="runsim_distribution.html"];
+  runsimold [URL="runsimold.html"];
+  selectKwaynew [URL="selectKwaynew.html"];
+  selectLine [URL="selectLine.html"];
+  selectrandLine [URL="selectrandLine.html"];
+  statup [URL="statup.html"];
+  upKont [URL="upKont.html"];
+  upPass [URL="upPass.html"];
+}
